@@ -328,6 +328,20 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 		System.out.println("Trigger SOA element present is: " + d);
 		Assert.assertTrue(d, "Element " + trigger_soa_value + " is not present ");
 	}
+	
+	public void verifySendMailAndApproveReject(String sendmailvalue, String approverejectvalue) throws Exception {
+		String send_mail_value = "//a/span[@class='menu-item-title-wrap']/span[text()='" + sendmailvalue + "']";
+		boolean c = SeleniumFunc.xpath_Genericmethod_verifyElementPresent(send_mail_value);
+		Reporter.log("Send Mail element present is: " + c);
+		System.out.println("Send Mail element present is: " + c);
+		Assert.assertTrue(c, "Element " + send_mail_value + " is not present ");
+
+		String approve_reject_value = "//a/span[@class='menu-item-title-wrap']/span[text()='" + approverejectvalue + "']";
+		boolean d = SeleniumFunc.xpath_Genericmethod_verifyElementPresent(approve_reject_value);
+		Reporter.log("Approve / Reject element present is: " + d);
+		System.out.println("Approve / Reject element present is: " + d);
+		Assert.assertTrue(d, "Element " + approve_reject_value + " is not present ");
+	}
 
 	public void clickOnApproveRejectLink() throws Exception {
 		xpath_GenericMethod_Click(xpath_approve_reject_link);

@@ -189,6 +189,11 @@ public class GenericCaseTest {
 	public void verify_the_values_in_other_actions_three_dot_menu_and(String sendmailvalue, String triggersoavalue) throws Exception {
 	    genericcasepage.verifySendMailAndTriggerS0A(sendmailvalue,triggersoavalue);
 	}
+	
+	@Given("Verify the values in other actions threedotmenu {string} and {string}")
+	public void verify_the_values_in_other_actions_threedotmenu_and(String sendmailvalue, String approverejectvalue) throws Exception {
+	    genericcasepage.verifySendMailAndApproveReject(sendmailvalue,approverejectvalue);
+	}
 
 	@Then("Click on Cancel Order link")
 	public void click_on_Cancel_Order_link() throws Exception {
