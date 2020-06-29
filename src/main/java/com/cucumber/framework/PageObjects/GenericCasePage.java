@@ -220,6 +220,10 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 		 */
 
 	}
+	
+	public void clickOnRefreshButton() throws Exception{
+		driver.navigate().refresh();
+	}
 
 	public void verifyCreditLimitUsageExclFutureOrdersInPercentage(String creditlimitusagepercentage) throws Exception {
 		SeleniumFunc.xpath_GenericMethod_Click(xpath_credit_data_tab);
@@ -300,6 +304,26 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 		}
 
 	}
+	
+	
+
+	public void validateBotValidationMessage(String botvalidationmessage) {
+
+		try {
+			String bot_text = SeleniumFunc.getElementText(xpath_bot_validation_message);
+			System.out.println("Actual BOT Validation Message is : " + bot_text + " " + "Expected is: "
+					+ botvalidationmessage);
+			Reporter.log("Actual BOT Validation Message is : " + bot_text + " " + "Expected is: "
+					+ botvalidationmessage);
+			Assert.assertEquals(bot_text, botvalidationmessage,
+					"Actual and Expected values are not same");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+	
+	
 
 	public void clickOnOtherActionsValue(String otheractionvalue) throws Exception {
 		String xpath_other_action_value_link = "//a/span[@class='menu-item-title-wrap']/span[text()='"

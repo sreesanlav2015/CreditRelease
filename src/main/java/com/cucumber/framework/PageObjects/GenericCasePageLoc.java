@@ -38,6 +38,7 @@ public interface GenericCasePageLoc {
     String xpath_updatestatus_link="//a/span[@class='menu-item-title-wrap']/span[text()='Update Status']";
     String xpath_cancel_order_link="//a/span[@class='menu-item-title-wrap']/span[text()='Cancel Order']";
     String xpath_cancel_order_validation_message="//div[@data-test-id='2020040812455305024440']";
+    String xpath_bot_validation_message="//div[contains(text(),'BOT failed to retrieve the Credit Data. Please take necessary action.')]";
     String xpath_approve_reject_link="//a/span[@class='menu-item-title-wrap']/span[text()='Approve / Reject']";
     String xpath_trigger_SOA_link="//a/span[@class='menu-item-title-wrap']/span[text()='Trigger SOA']";
     String xpath_manual_oreder_revision_link="//a/span[@class='menu-item-title-wrap']/span[text()='Manual Order Revision']";

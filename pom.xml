@@ -147,7 +147,7 @@
 						<URL>${url}</URL>
 						<ImplicitWait>${implicitwait}</ImplicitWait>
 					</systemPropertyVariables> -->  <!-- System property part Runs from jenkins -->
-					<argLine>-Dcucumber.options="--tags @ReviewRiskCategoryDirectorApprove"</argLine>   <!-- Run from local for single scenario execution original syntax is -Dcucumber.options=" 
+					<argLine>-Dcucumber.options="--tags @SentmailInformationOnly"</argLine>   <!-- Run from local for single scenario execution original syntax is -Dcucumber.options=" 
 						two hyphens tags @Test3,@Test1" -->
 				</configuration>
 			</plugin>

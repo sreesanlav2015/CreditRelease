@@ -126,6 +126,11 @@ public class GenericCaseTest {
 		genericcasepage.clickOnEditButton();
 	}
 	
+	@Then("Click on refresh button")
+	public void click_on_refresh_button() throws Exception {
+		genericcasepage.clickOnRefreshButton();
+	}
+	
 	@Given("Verify the credit limit excl future {string}")
 	public void verify_the_credit_limit_excl_future(String creditlimitusagepercentage) throws Exception {
 	    genericcasepage.verifyCreditLimitUsageExclFutureOrdersInPercentage(creditlimitusagepercentage);
@@ -204,6 +209,15 @@ public class GenericCaseTest {
 	public void verify_the_validation_message(String cancelordervalidationmessage) {
 	   genericcasepage.validateCancelOrderValidationMessage(cancelordervalidationmessage);
 	}
+	
+	@Given("Verify the BOT validation message {string}")
+	public void verify_the_BOT_validation_message(String botvalidationmessage) {
+		genericcasepage = new GenericCasePage(TestBase.getDriver());
+		genericcasepage.sendGenericCaseObject(genericcasepage);	
+	   genericcasepage.validateBotValidationMessage(botvalidationmessage);
+	}
+	
+	
 	
 	@Then("Click on Change RDD link")
 	public void click_on_Change_RDD_link() throws Exception {

@@ -19,11 +19,11 @@ public class PegaBotTest {
 
 	PegaBot pegabot;
 
-	@Given("Using Pega Bot Create a Case id and assign to CFS {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and verify in the app using {string} and {string}")
-	public void using_Pega_Bot_Create_a_Case_id_and_assign_to_CFS_and_and_and_and_and_and_and_and_and_and_and_and_and_and_verify_in_the_app_using_and(
+	@Given("Using Pega Bot Create a Case id and assign to CFS {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and verify in the app using {string} and {string}")
+	public void using_Pega_Bot_Create_a_Case_id_and_assign_to_CFS_and_and_and_and_and_and_and_and_and_and_and_and_and_and_and_verify_in_the_app_using_and(
 			String Salesorg, String Customerriskcategory, String Customernumber, String Customernumbershipto,
 			String Customernumberpayer, String Divison, String Distributionchannel, String Currency, String CreditLimit,
-			String CreditLimitUsage, String NextDate, String PastDue, String WeightAvgDays, String Creditlimitusage_TR,
+			String CreditLimitUsage, String NextDate, String PastDue, String WeightAvgDays, String Creditlimitusage_TR,String BOTStatus,
 			String username, String password) throws Exception {
 		pegabot = new PegaBot(TestBase.getDriver());
 		pegabot.sendPegaBotPageObject(pegabot);
@@ -32,14 +32,14 @@ public class PegaBotTest {
 		pegabot.VerifyCase(username, password);
 		pegabot.getRequestCasesUsingBot();
 		pegabot.putRequestChangeCaseToRouting(CreditLimit, CreditLimitUsage, NextDate, PastDue, WeightAvgDays,
-				Creditlimitusage_TR);
+				Creditlimitusage_TR,BOTStatus);
 	}
 
-	@Given("Using Pega Bot Create a Case id and assign to CFS {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and verify in the app using {string} and {string} to verify bot WB SLA and Edit button")
-	public void using_Pega_Bot_Create_a_Case_id_and_assign_to_CFS_and_and_and_and_and_and_and_and_and_and_and_and_and_and_verify_in_the_app_using_and_to_verify_bot_WB_SLA_and_Edit_button(
+	@Given("Using Pega Bot Create a Case id and assign to CFS {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and verify in the app using {string} and {string} to verify bot WB SLA and Edit button")
+	public void using_Pega_Bot_Create_a_Case_id_and_assign_to_CFS_and_and_and_and_and_and_and_and_and_and_and_and_and_and_and_verify_in_the_app_using_and_to_verify_bot_WB_SLA_and_Edit_button(
 			String Salesorg, String Customerriskcategory, String Customernumber, String Customernumbershipto,
 			String Customernumberpayer, String Divison, String Distributionchannel, String Currency, String CreditLimit,
-			String CreditLimitUsage, String NextDate, String PastDue, String WeightAvgDays, String Creditlimitusage_TR,
+			String CreditLimitUsage, String NextDate, String PastDue, String WeightAvgDays, String Creditlimitusage_TR,String BOTStatus, 
 			String username, String password) throws Exception {
 		pegabot = new PegaBot(TestBase.getDriver());
 		pegabot.sendPegaBotPageObject(pegabot);

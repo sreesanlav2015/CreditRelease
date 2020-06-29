@@ -36,6 +36,7 @@ public class PegaBot extends CustomerServ implements PegaBotPageLoc {
 	String PastDue = "";
 	String WeightAvgDays = "";
 	String Creditlimitusage_TR = "";
+	String BOTStatus="";
 
 	public PegaBot(WebDriver driver) {
 		super(driver);
@@ -171,7 +172,7 @@ public class PegaBot extends CustomerServ implements PegaBotPageLoc {
 	}
 
 	public void putRequestChangeCaseToRouting(String CreditLimit, String CreditLimitUsage, String NextDate,
-			String PastDue, String WeightAvgDays, String Creditlimitusage_TR) throws IOException {
+			String PastDue, String WeightAvgDays, String Creditlimitusage_TR,String BOTStatus) throws IOException {
 
 		this.CreditLimit = CreditLimit;
 		this.CreditLimitUsage = CreditLimitUsage;
@@ -179,6 +180,7 @@ public class PegaBot extends CustomerServ implements PegaBotPageLoc {
 		this.PastDue = PastDue;
 		this.WeightAvgDays = WeightAvgDays;
 		this.Creditlimitusage_TR = Creditlimitusage_TR;
+		this.BOTStatus=BOTStatus;
 
 		OkHttpClient client = new OkHttpClient().newBuilder().build();
 		MediaType mediaType = MediaType.parse("application/json");
@@ -188,7 +190,7 @@ public class PegaBot extends CustomerServ implements PegaBotPageLoc {
 						+ CreditLimitUsage + "\",\r\n      \"TotalReceivables\": \"" + Creditlimitusage_TR
 						+ "\",\r\n      \"NetValue\": \"4672.32\",\r\n      \"NextDate\": \"" + NextDate
 						+ "\",\r\n      \"PastDue\": \"" + PastDue + "\",\r\n      \"WeightAvgDays\": \""
-						+ WeightAvgDays + "\",\r\n      \"BOTStatus\": \"Success\"\r\n    }\r\n   ]\r\n}");
+						+ WeightAvgDays + "\",\r\n      \"BOTStatus\": \"" + BOTStatus + "\"\r\n    }\r\n   ]\r\n}");
 		Request request = new Request.Builder()
 				.url("https://unilvr-o2cmdm-stg1.pegacloud.net/prweb/PRRestService/BOTServices/V1/PutOrderCRDetails")
 				.method("PUT", body).addHeader("Authorization", "Basic QlJFU2VydmljZU9wZXJhdG9yOlJ1bGVzQDEyMzQ=")
