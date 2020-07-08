@@ -37,7 +37,9 @@ public class PegaBot extends CustomerServ implements PegaBotPageLoc {
 	String WeightAvgDays = "";
 	String Creditlimitusage_TR = "";
 	String BOTStatus="";
-
+	String salesordernumber="";
+	String caseidnumber="";
+	
 	public PegaBot(WebDriver driver) {
 		super(driver);
 	}
@@ -60,6 +62,7 @@ public class PegaBot extends CustomerServ implements PegaBotPageLoc {
 				"Sales Order Number is: " + m[0] + m[1] + m[2] + m[3] + m[4] + m[5] + m[6] + m[7] + m[8] + m[9]);
 		son = m[0] + m[1] + m[2] + m[3] + m[4] + m[5] + m[6] + m[7] + m[8] + m[9];
 		System.out.println("SON Value is: " + son);
+		salesordernumber = son;
 
 		OkHttpClient client = new OkHttpClient().newBuilder().build();
 		MediaType mediaType = MediaType.parse("application/json");
@@ -113,6 +116,8 @@ public class PegaBot extends CustomerServ implements PegaBotPageLoc {
 		String caseid_value = SeleniumFunc.xpath_Genericmethod_getElementText(xpath_getcaseid_text);
 		caseid = caseid_value;
 		System.out.println(caseid);
+		caseidnumber = caseid;
+		System.out.println("Case ID Number is: "+ caseidnumber);
 //		SeleniumFunc.waitFor(3);
 		// SeleniumFunc.xpath_GenericMethod_Click(xpath_getcaseid_text);
 		System.out.println("Verified case created in the Application");
@@ -232,8 +237,24 @@ public class PegaBot extends CustomerServ implements PegaBotPageLoc {
 		System.out.println("SLA is: " + case_sla);
 		Reporter.log("Actual SLA is: " + case_sla + " " + "and Expected SLA is :" + sla );
 		Assert.assertEquals(case_sla, sla, "Actual SLA is: " + case_sla + "and Expected SLA is :" + sla);
+	}
 	
-
+	public void changeStatusECCAckToResolvedCompleted() throws IOException {
+		System.out.println("Sales Order Number in ECC Ack :" + salesordernumber);
+		System.out.println("Case ID in ECC Ack: " + caseidnumber);
+		OkHttpClient client = new OkHttpClient().newBuilder()
+				  .build();
+				MediaType mediaType = MediaType.parse("application/json");
+				RequestBody body = RequestBody.create(mediaType, "{\r\n  \"ZP10OTC012002_SO_UPDATE_RESPONSE\": {\r\n    \"IM_ORDERS\": {\r\n      \"REQUEST\": \""+ caseidnumber +"\",\r\n      \"ORDER\": {\r\n        \"item\": [\r\n          {\r\n            \"VBELN\": \""+salesordernumber+"\",\r\n            \"STATUS\": {\r\n              \"item\": [\r\n                {\r\n                  \"STATUS\": \"Order Succesfully Updated\"\r\n                }\r\n              ]\r\n            }\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n}\r\n");
+				Request request = new Request.Builder()
+				  .url("https://unilvr-o2cmdm-stg1.pegacloud.net/prweb/PRRestService/NABREServices/01/PostAcknowledgeECCData")
+				  .method("PUT", body)
+				  .addHeader("Authorization", "Basic QlJFU2VydmljZU9wZXJhdG9yOlJ1bGVzQDEyMzQ=")
+				  .addHeader("Content-Type", "application/json")
+				  .addHeader("Cookie", "JSESSIONID=BB566C992C2A18EF335977B6226EC968; AWSALB=Q4E82QujnCG5/o8DJbfCiIMYUAz49PsPQ8U6/5DaBKPWnVGTIcGKXpGKe7JfE+LQcz+d0kUEn24klq7+4dm4jKGn90daQaB7DzTK6XuqRuxUJ6h2G+1vMAfKPfc0; AWSALBCORS=Q4E82QujnCG5/o8DJbfCiIMYUAz49PsPQ8U6/5DaBKPWnVGTIcGKXpGKe7JfE+LQcz+d0kUEn24klq7+4dm4jKGn90daQaB7DzTK6XuqRuxUJ6h2G+1vMAfKPfc0")
+				  .build();
+				Response response = client.newCall(request).execute();
+				response.close();
 
 	}
 }

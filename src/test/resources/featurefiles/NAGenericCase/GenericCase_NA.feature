@@ -42,10 +42,10 @@ Feature: Generic Case NA
     Examples: 
       | Username        | Password    | Value     | CustomerNumber | ServiceCase  | type1            | type2                           | type3                                | SalesOrg               | DistChannel | Division | ExpectedCFS        | ExpectedCP  | UpdateStatus       |
       | sreekanthna.cfs | Rules@1234# | Customers |     0030001613 | Generic Case | Order Entry      | RDD                             | RDD Change - Compliance              | 0003-CA Food Solutions | 10-Domestic | 16-Dry   | Ramakrishna Uppara | Mohan Akula | Resolved-Completed |
-      | sreekanthna.cfs | Rules@1234# | Customers |     0030001613 | Generic Case | Order Validation | Delivery Blocks                 | Over Volume                          | 0003-CA Food Solutions | 10-Domestic | 16-Dry   | Ramakrishna Uppara | Mohan Akula | Pending-InProgress |
-      | sreekanthna.cfs | Rules@1234# | Customers |     0030001613 | Generic Case | Order Validation | Order Modification - Item Level | Quantity increase                    | 0003-CA Food Solutions | 10-Domestic | 16-Dry   | Ramakrishna Uppara | Mohan Akula | Resolved-Withdrawn |
-      | sreekanthna.cfs | Rules@1234# | Customers |     0030001613 | Generic Case | Order fulfilment | Transport - Unloading           | Ship Project Load Consolidation      | 0003-CA Food Solutions | 10-Domestic | 16-Dry   | Ramakrishna Uppara | Mohan Akula | Pending-Response   |
-      | sreekanthna.cfs | Rules@1234# | Customers |     0030001613 | Generic Case | Master Data      | Customer Master Data            | CMIR (Customer Material Info Record) | 0003-CA Food Solutions | 10-Domestic | 16-Dry   | Ramakrishna Uppara | Mohan Akula | New                |
+      #| sreekanthna.cfs | Rules@1234# | Customers |     0030001613 | Generic Case | Order Validation | Delivery Blocks                 | Over Volume                          | 0003-CA Food Solutions | 10-Domestic | 16-Dry   | Ramakrishna Uppara | Mohan Akula | Pending-InProgress |
+      #| sreekanthna.cfs | Rules@1234# | Customers |     0030001613 | Generic Case | Order Validation | Order Modification - Item Level | Quantity increase                    | 0003-CA Food Solutions | 10-Domestic | 16-Dry   | Ramakrishna Uppara | Mohan Akula | Resolved-Withdrawn |
+      #| sreekanthna.cfs | Rules@1234# | Customers |     0030001613 | Generic Case | Order fulfilment | Transport - Unloading           | Ship Project Load Consolidation      | 0003-CA Food Solutions | 10-Domestic | 16-Dry   | Ramakrishna Uppara | Mohan Akula | Pending-Response   |
+      #| sreekanthna.cfs | Rules@1234# | Customers |     0030001613 | Generic Case | Master Data      | Customer Master Data            | CMIR (Customer Material Info Record) | 0003-CA Food Solutions | 10-Domestic | 16-Dry   | Ramakrishna Uppara | Mohan Akula | New                |
 
   #Author U.Ramakrishna
   @Smoke_GC_NA @GC_NA_TC2

@@ -187,6 +187,15 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 		Reporter.log("Case Id Generated is :" + actualcaseid_value);
 		Assert.assertTrue(caseid, "Generic case has not been created");
 	}
+	
+	public void verifyTheType3Value(String type3) throws Exception{
+		String type3_value = SeleniumFunc.xpath_Genericmethod_getElementText(xpath_type3_value);
+		System.out.println("Type3 value is: " + type3_value);
+		Reporter.log("Actual Type3  is: " + type3_value + " " + " and Excepted Type3 is: " + type3);
+		Assert.assertEquals(type3_value, type3, "Actual Type3 is: " + type3
+				+ "and Expected Type3 is :" + type3);
+		
+	}
 
 	public static void saveCaseIdPreference(String actualcaseid_value) {
 		prefs = Preferences.userNodeForPackage(GenericCasePage.class);
@@ -209,7 +218,9 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 	}
 
 	public void clickOnEditButton() throws Exception {
+		waitFor(1);
 		driver.navigate().refresh();
+		waitFor(2);
 		xpath_GenericMethod_Click(xpath_edit_btn);
 
 		/*
@@ -246,7 +257,14 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 	}
 
 	public void sendNewRDDDate() throws Exception {
-		 SeleniumFunc.xpath_GenericMethod_Sendkeys(xpath_new_rdd_date, "8/15/2020");
+		
+		Date today = new Date();              
+        SimpleDateFormat formattedDate = new SimpleDateFormat("MM/dd/yyyy");           
+        Calendar c = Calendar.getInstance();       
+        c.add(Calendar.DATE, 1);  // number of days to add     
+        String ToDate = (String)(formattedDate.format(c.getTime()));
+        System.out.println("Tomorrows date is " + ToDate);
+		 SeleniumFunc.xpath_GenericMethod_Sendkeys(xpath_new_rdd_date, ToDate);
 		 SeleniumFunc.xpath_GenericMethod_Key_SendKeys(xpath_new_rdd_date, Keys.ENTER);
 		 SeleniumFunc.xpath_GenericMethod_Key_SendKeys(xpath_new_rdd_date, Keys.TAB);
 //		driver.switchTo().defaultContent();
@@ -310,6 +328,7 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 	public void validateBotValidationMessage(String botvalidationmessage) {
 
 		try {
+			waitFor(1);
 			String bot_text = SeleniumFunc.getElementText(xpath_bot_validation_message);
 			System.out.println("Actual BOT Validation Message is : " + bot_text + " " + "Expected is: "
 					+ botvalidationmessage);
@@ -336,7 +355,7 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 		boolean b = SeleniumFunc.xpath_Genericmethod_verifyElementPresent(update_status_value);
 		Reporter.log("Update Status element present is: " + b);
 		System.out.println("Update Status element present is: " + b);
-		Assert.assertTrue(b, "Element" + updatestatusvalue + "is not present");
+		Assert.assertTrue(b, " Element " + updatestatusvalue + " is not present ");
 	}
 
 	public void verifySendMailAndTriggerS0A(String sendmailvalue, String triggersoavalue) throws Exception {
@@ -344,7 +363,7 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 		boolean c = SeleniumFunc.xpath_Genericmethod_verifyElementPresent(send_mail_value);
 		Reporter.log("Send Mail element present is: " + c);
 		System.out.println("Send Mail element present is: " + c);
-		Assert.assertTrue(c, "Element " + send_mail_value + " is not present ");
+		Assert.assertTrue(c, " Element " + send_mail_value + " is not present ");
 
 		String trigger_soa_value = "//a/span[@class='menu-item-title-wrap']/span[text()='" + triggersoavalue + "']";
 		boolean d = SeleniumFunc.xpath_Genericmethod_verifyElementPresent(trigger_soa_value);
@@ -471,7 +490,12 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 	}
 
 	public void waitForBot() throws Exception {
-		SeleniumFunc.waitFor(180);
+		SeleniumFunc.waitFor(240);
+		xpath_GenericMethod_Click(xpath_refresh);
+	}
+	
+	public void waitForBotECCAcknowledgement() throws Exception {
+		SeleniumFunc.waitFor(60);
 		xpath_GenericMethod_Click(xpath_refresh);
 	}
 
@@ -482,6 +506,7 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 	}
 
 	public void clickOnSubmitButtonInUpdateStatus() throws Exception {
+		waitFor(1);
 		xpath_GenericMethod_Click(xpath_updatestatus_submit_btn);
 	}
 
@@ -898,9 +923,27 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 		System.out.println("In Verify Email Destination Method");
 		String actualemaildestinationvalue = xpath_Genericmethod_getElementText(xpath_emaildestination);
 		Reporter.log("Actual Email Destination Field Value is: " + actualemaildestinationvalue);
-		boolean emaildestinationstatus = xpath_Genericmethod_VerifyTextEquals(xpath_emaildestination,
-				expectedemaildestination);
-		Assert.assertTrue(emaildestinationstatus, "Status of the case is not equal");
+//		boolean emaildestinationstatus = xpath_Genericmethod_VerifyTextEquals(xpath_emaildestination,
+//				expectedemaildestination);
+//		Assert.assertTrue(emaildestinationstatus, "Status of the case is not equal");
+		Reporter.log("Actual Email Destination Value: "+ actualemaildestinationvalue +  " and Expected Email Destination Value: " + expectedemaildestination + " are not same ");
+		System.out.println("Actual Email Destination Value: "+ actualemaildestinationvalue +  " and Expected Email Destination Value: " + expectedemaildestination + " are not same ");
+		Assert.assertEquals(actualemaildestinationvalue, expectedemaildestination, "Actual Email Destination Value: "+ actualemaildestinationvalue +  " and Expected Email Destination Value: " + expectedemaildestination + " are not same ");
+	}
+	
+	public void verifyTheEmailDestinationFieldAsBlank() throws Exception {
+		
+		System.out.println("In Verify Email Destination Method");
+		String actualemaildestinationvalue = xpath_Genericmethod_getElementText(xpath_emaildestination);
+		Reporter.log("Actual Email Destination Field Value is: " + actualemaildestinationvalue);
+		
+//		boolean emaildestinationstatus = xpath_Genericmethod_VerifyTextEquals(xpath_emaildestination,
+//				expectedemaildestination);
+//		Assert.assertTrue(emaildestinationstatus, "Status of the case is not equal");
+		Reporter.log("Actual Email Destination Value: "+ actualemaildestinationvalue +  " and Expected Email Destination Value: " + "" + " are not same ");
+		System.out.println("Actual Email Destination Value: "+ actualemaildestinationvalue +  " and Expected Email Destination Value: " + "" + " are not same ");
+		Assert.assertEquals(actualemaildestinationvalue, "", "Actual Email Destination Value: "+ actualemaildestinationvalue +  " and Expected Email Destination Value: " + "" + " are not same ");
+		
 	}
 
 	public void verifyUpdatedCaseStatus(String expectedupdatedcasestatus) throws Exception {
@@ -922,6 +965,8 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 		Reporter.log("Element enabled is :" + b);
 		Assert.assertEquals(b, false, "Actual and Expected are not same");
 	}
+	
+	
 
 	public void verifyCaseStatusRemarks(String expectedcasestatusremarks) throws Exception {
 		try {
@@ -1219,6 +1264,7 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 	}
 
 	public void clickOnSendEmailBtn() throws Exception {
+		waitFor(1);
 		xpath_GenericMethod_Click(xpath_sendemail_btn);
 	}
 
@@ -1235,6 +1281,7 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 	}
 
 	public void clickOnEmailInformationTab() throws Exception {
+		waitFor(1);
 		try {
 			xpath_GenericMethod_Click(xpath_caseidsearch_emailinformationtab);
 		} catch (Exception e) {
@@ -1251,6 +1298,19 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 		// "Reply Mail attachment is available for :" + caseid);
 		// }
 	}
+	
+	public void verifyEmailAttached() throws Exception {
+		// if (xpath_Genericmethod_verifyElementPresent(xpath_replymail_subject)) {
+		waitFor(1);
+		Assert.assertTrue(xpath_Genericmethod_verifyElementPresent(xpath_emailattached),
+				"Send Mail is not attached for the case");
+		// } else {
+		// Assert.assertFalse(xpath_Genericmethod_verifyElementPresent(xpath_replymail_subject),
+		// "Reply Mail attachment is available for :" + caseid);
+		// }
+	}
+	
+	
 
 	public void verifyCaseCanNotCreate(String message) throws Exception {
 		Assert.assertTrue(xpath_Genericmethod_VerifyTextEquals(xpath_casecannotcreate, message),
@@ -1368,9 +1428,11 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 	}
 
 	public void clickOnCloseTab() throws Exception {
+		waitFor(1);
 		xpath_GenericMethod_Click(xpath_down_arrow);
+		waitFor(1);
 		xpath_GenericMethod_Click(xpath_close_all);
-
+		waitFor(1);
 	}
 
 	public void clickOnAssignToWBLink() throws Exception {
@@ -1443,7 +1505,7 @@ public class GenericCasePage extends CustomerServ implements GenericCasePageLoc 
 	}
 
 	public void enterTypologiesInAdvanceSearch(String type1, String type2, String type3) throws Exception {
-//		waitFor(2);
+		waitFor(2);
 		SeleniumFunc.xpath_GenericMethod_selectFromDropdownUsingVisibleTextbyclickingOnDropdown(
 				xpath_type1_advancesearch, type1);
 		SeleniumFunc.xpath_GenericMethod_selectFromDropdownUsingVisibleTextbyclickingOnDropdown(

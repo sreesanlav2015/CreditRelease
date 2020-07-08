@@ -26,6 +26,8 @@ public interface GenericCasePageLoc {
     //String xpath_edit_btn="//button[@name='pyAssignmentsActions_D_pyCaseContents_pa168797343212634pz.pxResults(1)_1' and text()='Edit' and @class='pzhc pzbutton']";
     String xpath_edit_btn="//*[@id=\"CT\"]/div/div/div/div/span/button";
     String xpath_credit_data_tab="//h1[contains(@id,'headerlabel') and text()='Credit Data']";
+//    String xpath_type3_value="//span[@data-test-id='201904051234080173147817' and text()='Manual Intervention']";
+    String xpath_type3_value="//*[@id=\"RULE_KEY\"]/div/div[3]/div/span";
     String xpath_credit_limit_usage_percentage="//div[@data-node-id='CRCaseCreditData']/div/div/div/div[5]/div/span";
     //String xpath_edit_btn_two="//button[@data-test-id='201609091025020567152987' and text()='Edit']";
     String xpath_edit_btn_two="//*[@id=\"CT\"]/div/div/div/div/span/button";
@@ -114,6 +116,7 @@ public interface GenericCasePageLoc {
     //String xpath_caseidsearch_emailinformationtab="//h3[contains(@id,'headerlabel9225')]";
     //String xpath_caseidsearch_emailinformationtablast="//*[@id='headerlabel7822']";
     String xpath_replymail_subject="//a[contains(@id,'att_feed_desc') and contains(text(),'RE:')]";
+    String xpath_emailattached="//a[contains(@id,'att_feed_desc') and contains(text(),'CR-')]";
     
 	/* Assign To xpaths */
     String xpath_assignto_btn="//a[@data-test-id='20190827092526022488592' and text()='Assign To']";

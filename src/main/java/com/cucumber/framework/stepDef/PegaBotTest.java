@@ -76,5 +76,14 @@ public class PegaBotTest {
 		pegabot.sendPegaBotPageObject(pegabot);
 	   pegabot.verifyCaseUsingSalesOrderNumber(username, password, salesordernumber);
 	}
+	
+	
+	@Given("Run the pegabot API to change the status from acknowledgement to resolved completed")
+	public void run_the_pegabot_API_to_change_the_status_from_acknowledgement_to_resolved_completed() throws IOException {
+		pegabot = new PegaBot(TestBase.getDriver());
+		pegabot.sendPegaBotPageObject(pegabot);
+		pegabot.changeStatusECCAckToResolvedCompleted();
+
+	}
 
 }

@@ -108,6 +108,13 @@ public class GenericCaseTest {
 		genericcasepage.sendGenericCaseObject(genericcasepage);
 		genericcasepage.verifyCaseCreated();
 	}
+	
+	@Given("Verify the casetype {string} value")
+	public void verify_casetype_value(String type3) throws Exception {
+		genericcasepage = new GenericCasePage(TestBase.getDriver());
+		genericcasepage.sendGenericCaseObject(genericcasepage);
+		genericcasepage.verifyTheType3Value(type3);
+	}
 
 	@Then("Verify the SLA {string}")
 	public void verify_the_sla(String expectedsla) throws Exception {
@@ -128,6 +135,8 @@ public class GenericCaseTest {
 	
 	@Then("Click on refresh button")
 	public void click_on_refresh_button() throws Exception {
+		genericcasepage = new GenericCasePage(TestBase.getDriver());
+		genericcasepage.sendGenericCaseObject(genericcasepage);
 		genericcasepage.clickOnRefreshButton();
 	}
 	
@@ -170,6 +179,12 @@ public class GenericCaseTest {
 	public void Wait_for_the_bot_response() throws Exception {
 
 		genericcasepage.waitForBot();
+	}
+	
+	@Given("Wait for ECC Acknowledgement")
+	public void wait_for_ecc_acknowledgement() throws Exception {
+
+		genericcasepage.waitForBotECCAcknowledgement();
 	}
 	
 	@Given("Wait for the bot response Auto")
@@ -529,6 +544,12 @@ public void verify_the_case_id_in_mycases_NA_SOA() throws Exception {
 			String expectedemaildestination) throws Exception {
 		genericcasepage.verifyUpdatedEmailDestinationFieldInGeneralTab(expectedemaildestination);
 	}
+	
+	
+	@Given("Verify the email destination field as blank")
+	public void verify_the_email_destination_field_as_blank() throws Exception {
+	   genericcasepage.verifyTheEmailDestinationFieldAsBlank();
+	}
 
 	@Given("Verify the updated case status as {string}")
 	public void verify_the_updated_case_status_as(String expectedupdatestatus) throws Exception {
@@ -536,6 +557,9 @@ public void verify_the_case_id_in_mycases_NA_SOA() throws Exception {
 		genericcasepage.sendGenericCaseObject(genericcasepage);
 		genericcasepage.verifyUpdatedCaseStatus(expectedupdatestatus);
 	}
+	
+	
+
 	
 	@Given("Verify the options external notes is disabled")
 	public void verify_the_options_external_notes_is_displayed() throws Exception {
@@ -637,6 +661,11 @@ public void verify_the_values_present_in_the_Email_Destination_and_and_dropdown_
 	@When("Verify the reply email attachment is present for {string}")
 	public void verify_the_reply_email_attachment_is_present(String caseid) throws Exception {
 		genericcasepage.verifyEmailSubjectForRE(caseid);
+	}
+	
+	@Given("Verify the mail sent is present in the email information tab")
+	public void verify_the_mail_sent_is_present_in_the_email_information_tab() throws Exception {
+		genericcasepage.verifyEmailAttached();
 	}
 
 	@When("Verify the message case cannot be created {string}")
